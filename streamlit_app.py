@@ -41,7 +41,7 @@ if "nota_actual" not in st.session_state:
 if "mostrar_corazones" not in st.session_state:
     st.session_state.mostrar_corazones = False
 
-st.markdown("<h2 style='text-align: center; color: #6d4c41; font-family: sans-serif;'>El tiempo que llevo siendo el más feliz a tu lado: ✨</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: #6d4c41; font-family: sans-serif;'>El tiempo que llevo siendo la más feliz a tu lado: ✨</h2>", unsafe_allow_html=True)
 
 # Calcular tiempo exacto
 ahora = datetime.now()
