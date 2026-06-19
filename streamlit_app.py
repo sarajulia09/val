@@ -36,7 +36,7 @@ MENSAJITOS = [
        "Me gusta todo de ti.",
        "Gracias por ser mi novia, mi confidente y mi mejor amiga."
    ]
-st.markdown("<h2 style='text-align: center; color: #6d4c41; font-family: sans-serif;'>El tiempo que llevo siendo el más feliz a tu lado: ✨</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: #6d4c41; font-family: sans-serif;'>El tiempo que llevo siendo la más feliz a tu lado: ✨</h2>", unsafe_allow_html=True)
 
 # Calcular tiempo exacto con horas, minutos y segundos
 ahora = datetime.now()
