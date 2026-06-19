@@ -3,15 +3,16 @@ from datetime import datetime
 import random
 from streamlit_autorefresh import st_autorefresh
 
+# Reloj automático cada 1 segundo
 st_autorefresh(interval=1000, key="daterefresh")
 st.set_page_config(page_title="Nuestra Historia ❤️", page_icon="❤️")
 
-# 1. CAMBIA TU FECHA AQUÍ (Año, Mes, Día, Hora, Minuto, Segundo)
+# 1. FECHA DE ANIVERSARIO (Año, Mes, Día, Hora, Minuto, Segundo)
 FECHA_ANIVERSARIO = datetime(2026, 6, 1, 2, 7, 30) 
 
-# 2. CAMBIA O AGREGA TUS FRASES AQUÍ
+# 2. TUS FRASES
 MENSAJITOS = [
-     "Eres mi persona favorita en todo el universo.",
+  "Eres mi persona favorita en todo el universo.",
        "Gracias por hacerme sonreír incluso en los días difíciles.",
        "Solo piensoen ti.",
        "¿Ya te dije hoy que eres lo mejor que me ha pasado?",
@@ -33,11 +34,16 @@ MENSAJITOS = [
        "Me gusta todo de ti.",
        "Gracias por ser mi novia, mi confidente y mi mejor amiga."
    ]
+
+# Guarda el mensaje en la memoria para que no parpadee con el reloj
 if "nota_actual" not in st.session_state:
-    st.session_state.nota_actual = "Haz clic abajo para leer..."
+    st.session_state.nota_actual = ""
+if "mostrar_corazones" not in st.session_state:
+    st.session_state.mostrar_corazones = False
 
-st.markdown("<h2 style='text-align: center; color: #6d4c41; font-family: sans-serif;'>El tiempo que llevo siendo la más feliz a tu lado: ✨</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: #6d4c41; font-family: sans-serif;'>El tiempo que llevo siendo el más feliz a tu lado: ✨</h2>", unsafe_allow_html=True)
 
+# Calcular tiempo exacto
 ahora = datetime.now()
 diferencia = ahora - FECHA_ANIVERSARIO
 dias = diferencia.days
@@ -50,8 +56,23 @@ st.markdown(f"<h1 style='text-align: center; color: #d81b60; font-family: sans-s
 st.write("")
 st.write("¿Me extrañas o necesitas una sonrisa? Presiona aquí abajo: ⬇️")
 
+# Botón limpio sin globos
 if st.button("Abrir una nota de amor 💌", use_container_width=True):
     st.session_state.nota_actual = random.choice(MENSAJITOS)
-    st.balloons()
+    st.session_state.mostrar_corazones = True
 
-st.success(st.session_state.nota_actual)
+# Si ya presionó el botón, muestra los corazones latiendo y el mensaje fijo
+if st.session_state.mostrar_corazones:
+    st.markdown("""
+        <div style='text-align: center; font-size: 26px; margin-bottom: 10px; animation: pulse 1s infinite;'>
+            ❤️💖💝💘💕💝💖❤️
+        </div>
+        <style>
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.08); }
+                100% { transform: scale(1); }
+            }
+        </style>
+    """, unsafe_allow_html=True)
+    st.success(st.session_state.nota_actual)
